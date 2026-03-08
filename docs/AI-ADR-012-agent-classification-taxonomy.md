@@ -3,6 +3,7 @@
 **Status:** Accepted
 **Date:** 2026-03-08
 **Author:** Ryan / ry-ops.dev
+**Scope:** Global — applies to all git-fabric repositories
 **Depends On:** AI-ADR-006 (Agent Permission Boundaries), ADR-003 §5-6
 
 ## Context
