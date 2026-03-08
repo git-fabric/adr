@@ -29,6 +29,7 @@ jobs:
           - git-fabric/fabric-ctrl
           - git-fabric/fabric-forge
           - git-fabric/fabric-gitops
+          - git-fabric/yt-adr-feed
     steps:
       - name: Dispatch sync event
         uses: peter-evans/repository-dispatch@v3
