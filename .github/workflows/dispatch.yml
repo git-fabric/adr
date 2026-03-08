@@ -1,0 +1,38 @@
+name: Dispatch ADR sync to downstream repos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo:
+          - git-fabric/sdk
+          - git-fabric/gateway
+          - git-fabric/k8s
+          - git-fabric/aiana
+          - git-fabric/cloudflare
+          - git-fabric/tailscale
+          - git-fabric/proxmox
+          - git-fabric/unifi
+          - git-fabric/cve
+          - git-fabric/git
+          - git-fabric/sandfly
+          - git-fabric/chat
+          - git-fabric/terminal
+          - git-fabric/pipelines
+          - git-fabric/fabric-ctrl
+          - git-fabric/fabric-forge
+          - git-fabric/fabric-gitops
+    steps:
+      - name: Dispatch sync event
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.ORG_DISPATCH_PAT }}
+          repository: ${{ matrix.repo }}
+          event-type: sync-global-adrs
