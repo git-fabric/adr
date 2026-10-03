@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.svg" alt="adr: Global Architecture Decision Records for git-fabric" width="100%"></p>
+
 # git-fabric Global ADRs
 
 Organization-wide Architecture Decision Records that apply to **all** git-fabric repositories.
@@ -41,3 +43,8 @@ adr/
 ## Downstream repos
 
 Sync targets are defined in `.github/workflows/dispatch.yml`. To add a new repo, add it to the matrix.
+
+<!-- org-footer -->
+---
+
+<p align="center"><sub>Part of <a href="https://github.com/git-fabric">git-fabric</a> · composable fabric apps for Git-native infrastructure · built by <a href="https://github.com/ry-ops">ry-ops</a></sub></p>
