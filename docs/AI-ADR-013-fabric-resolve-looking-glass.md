@@ -40,7 +40,7 @@ explicitly:
 
 ## Decision
 
-fabric-ctrl exposes **one read-only MCP tool, `fabric.resolve(intent)`**, that answers
+fabric-ctrl exposes **one read-only MCP tool, `fabric.resolve(intent)`** (MCP name `fabric_resolve`), that answers
 three questions about any intent:
 
 | Answer | Meaning |
@@ -81,9 +81,10 @@ scope) and a typed list of gaps.
    - Plan ordering never uses a model. In order of preference:
      1. a **sequence template** (the existing `SEQ-01…06`, rewritten from agent-level to
         tool-level steps) whose trigger matches the intent;
-     2. a **single step** when one tool matches above threshold;
-     3. otherwise, matched tools grouped by app with **reads before writes**, each write
-        depending on the reads before it in the same app.
+     2. otherwise the matcher's **set cover**: the fewest tools that together cover the
+        intent (a single step when one tool suffices), grouped by app with **reads before
+        writes**, each write depending on the reads before it in the same app. The match
+        threshold applies to the whole plan's coverage, not to each tool.
    - Anything that needs real multi-step chaining beyond that is returned as `partial`
      with a `low_confidence` gap and `escalation.recommended: "claude"`.
    - Verdict, confidence and gap classification are pure functions in the schema module.
